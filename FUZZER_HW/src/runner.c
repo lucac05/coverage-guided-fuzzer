@@ -108,6 +108,7 @@ void runner_fini(RUNNER runner) {
 
     if(runner->pid > 0){
         kill(runner->pid, SIGTERM);
+        waitpid(runner->pid, NULL, 0);
     }
 
     close(runner->pipe_f_to_r[0]);    //pipe cleanup
@@ -292,6 +293,7 @@ static volatile sig_atomic_t sigchld_seen = 0;
 static volatile pid_t current_target_pid = -1;
 
 static void helpr_runner_sighandler(int sig_num){
+    int old_errno = errno;
     if(sig_num == SIGTERM || sig_num == SIGINT || sig_num == SIGHUP){
         sigterm_seen = 1;
         if(current_target_pid > 0){
@@ -307,6 +309,7 @@ static void helpr_runner_sighandler(int sig_num){
     else if(sig_num == SIGCHLD){
         sigchld_seen = 1;
     }
+    errno = old_errno;
 }
 
 int runner_launch(RUNNER runner) {

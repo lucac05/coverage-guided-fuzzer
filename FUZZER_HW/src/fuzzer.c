@@ -89,6 +89,11 @@ int run_fuzzer(FILE *seed_file, int job_count, int input_count, int time_limit, 
         if(sigchld_seen){   //pending sigs
             sigchld_seen = 0;
             runners_reap(runners);
+            if(!runners_has_jobs(runners)){
+                fprintf(stderr, "All runner processes terminated, shutting down...\n");
+                shutdown_req = 1;
+                continue;
+            }
         }
         if(sigusr1_seen){
             sigusr1_seen = 0;
