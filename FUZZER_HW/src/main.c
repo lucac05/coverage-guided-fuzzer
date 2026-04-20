@@ -2,6 +2,7 @@
 #include "fuzzer.h"
 #include <stdlib.h>
 #include <string.h>
+#include "utils.h"
 
 #define ERR_EXIT() do{PRINT_USAGE(stderr, argv[0]); return EXIT_FAILURE;}while(0)
 
@@ -18,28 +19,35 @@ int main(int argc, char *argv[]) {
             return EXIT_SUCCESS;
         }
         else if(strcmp(argv[arg_ind], "-j") == 0){
-            if((arg_ind + 1) >= argc){
+            arg_ind++;
+            if(arg_ind >= argc || !is_num(argv[arg_ind])){
+                fprintf(stderr, "Error: -j requires an argument (number)\n");
                 ERR_EXIT();
             }
-            num_jobs = atoi(argv[++arg_ind]);
+            num_jobs = atoi(argv[arg_ind]);
         }
         else if(strcmp(argv[arg_ind], "-n") == 0){
-            if((arg_ind + 1) >= argc){
+            arg_ind++;
+            if(arg_ind >= argc || !is_num(argv[arg_ind])){
+                fprintf(stderr, "Error: -n requires an argument (number)\n");
                 ERR_EXIT();
             }
-            num_inputs = atoi(argv[++arg_ind]);
+            num_inputs = atoi(argv[arg_ind]);
         }
         else if(strcmp(argv[arg_ind], "-s") == 0){
-            if((arg_ind + 1) >= argc){
+            arg_ind++;
+            if(arg_ind >= argc){
                 ERR_EXIT();
             }
-            seed_fname = argv[++arg_ind];
+            seed_fname = argv[arg_ind];
         }
         else if(strcmp(argv[arg_ind], "-t") == 0){
-            if((arg_ind + 1) >= argc){
+            arg_ind++;
+            if(arg_ind >= argc || !is_num(argv[arg_ind])){
+                fprintf(stderr, "Error: -t requires an argument (number)\n");
                 ERR_EXIT();
             }
-            timelimit = atoi(argv[++arg_ind]);
+            timelimit = atoi(argv[arg_ind]);
         }
         else{   //this is the target program, evertyhign after is its args
             break;
