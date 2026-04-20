@@ -125,7 +125,7 @@ void runner_fini(RUNNER runner) {
 
     shm_unlink(runner->shm_name);
 
-    free(runner);
+    SAFEFREE(runner);
 }
 
 char *runner_coverage_map(RUNNER runner) {
