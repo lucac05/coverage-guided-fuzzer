@@ -64,8 +64,9 @@ MUTATOR_STATE input_set_state(INPUT input, MUTATOR_STATE state) {
     if(!input){
         return 0;
     }
-    (void) state;
-    return 0;
+    MUTATOR_STATE old_state = input->state;
+    input->state = state;
+    return old_state;
 }
 
 MUTATOR_STATE input_state_step(INPUT input) {
