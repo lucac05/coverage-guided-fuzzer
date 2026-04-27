@@ -6,7 +6,7 @@
 
 #define ERR_EXIT() do{PRINT_USAGE(stderr, argv[0]); return EXIT_FAILURE;}while(0)
 
-int main(int argc, char *argv[]) {  //TODO investigate 
+int main(int argc, char *argv[]) {  //TODO investigate
     int num_jobs = DEFAULT_RUNNER_COUNT;
     int num_inputs = DEFAULT_INPUT_TOTAL;
     int timelimit = DEFAULT_TIMEOUT_SEC;
