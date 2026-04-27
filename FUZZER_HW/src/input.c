@@ -75,5 +75,5 @@ MUTATOR_STATE input_state_step(INPUT input) {
     }
     MUTATOR_STATE old_state = input->state;
     input->state++;
-    return input->state;    //piazza
+    return old_state;
 }
