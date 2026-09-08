@@ -19,41 +19,41 @@ The fuzzer operates using a concurrent architecture to maximize testing throughp
 ## 🛠️ Build and Run
 
 **Prerequisites**
-Ensure you have `clang` and `libclang-rt-18-dev` installed, as the fuzzer requires LLVM's C compiler and coverage sanitizer headers[cite: 4]. The target `PROGRAM` you intend to test must also be compiled and linked with the coverage sanitizer (`-fsanitize-coverage=trace-pc-guard`) and any other desired sanitizers (e.g., ASan, MSan)[cite: 4].
+Ensure you have `clang` and `libclang-rt-18-dev` installed, as the fuzzer requires LLVM's C compiler and coverage sanitizer headers. The target `PROGRAM` you intend to test must also be compiled and linked with the coverage sanitizer (`-fsanitize-coverage=trace-pc-guard`) and any other desired sanitizers (e.g., ASan, MSan).
 
 **Compilation**
-Compile the fuzzer executable utilizing the provided Makefile[cite: 4]:
+Compile the fuzzer executable utilizing the provided Makefile:
 ```bash
 make
 ```
-To compile with debugging symbols, use[cite: 4]:
+To compile with debugging symbols, use:
 ```bash
 make debug
 ```
 
 **Execution Format**
-Start the fuzzer using the following command structure[cite: 4]:
+Start the fuzzer using the following command structure:
 ```bash
 ./bin/fuzzer [options] PROGRAM ARGS...
 ```
-*Important: You must include the exact string `@@` as one of the arguments within `ARGS...`. This acts as a placeholder that the fuzzer will replace with the generated test inputs before execution[cite: 4].*
+*Important: You must include the exact string `@@` as one of the arguments within `ARGS...`. This acts as a placeholder that the fuzzer will replace with the generated test inputs before execution.*
 
 **Configuration Options**
-Argument parsing processes options until an unrecognized argument is found, at which point all subsequent arguments are treated as the target program and its arguments[cite: 4].
-* `-s <seed_file>`: **(Required)** Specifies the input file containing newline-separated initial seed inputs for the fuzzer[cite: 4].
-* `-j <jobs>`: Sets the number of concurrent runner jobs to use (Default: 4)[cite: 4].
-* `-n <inputs>`: Sets the total number of mutated inputs to attempt, excluding the initial seeds (Default: 32)[cite: 4].
-* `-t <time_limit>`: Sets the time limit for the target program in seconds before it is forcefully terminated (Default: 5)[cite: 4].
-* `-h`: Prints the help message and exits with `EXIT_SUCCESS`[cite: 4].
+Argument parsing processes options until an unrecognized argument is found, at which point all subsequent arguments are treated as the target program and its arguments.
+* `-s <seed_file>`: **(Required)** Specifies the input file containing newline-separated initial seed inputs for the fuzzer.
+* `-j <jobs>`: Sets the number of concurrent runner jobs to use (Default: 4).
+* `-n <inputs>`: Sets the total number of mutated inputs to attempt, excluding the initial seeds (Default: 32).
+* `-t <time_limit>`: Sets the time limit for the target program in seconds before it is forcefully terminated (Default: 5).
+* `-h`: Prints the help message and exits with `EXIT_SUCCESS`.
 
 **Execution Examples**
-Run the fuzzer on a target program (`cascade`) using a required seed file (`inputs.txt`) with all default settings[cite: 4]:
+Run the fuzzer on a target program (`cascade`) using a required seed file (`inputs.txt`) with all default settings:
 ```bash
 ./bin/fuzzer -s inputs.txt ./programs/bin/cascade @@
 ```
 
-Run the fuzzer with a custom configuration: 10 concurrent jobs, 100 total generated inputs, and a 50-second timeout for the target program[cite: 4]:
+Run the fuzzer with a custom configuration: 10 concurrent jobs, 100 total generated inputs, and a 50-second timeout for the target program:
 ```bash
 ./bin/fuzzer -j 10 -n 100 -s hello ./programs/bin/my_program -t 50 @@
 ```
-*(Note: In the example above, the `-t 50` is placed after the target program, meaning it is passed as an argument to `my_program`, not parsed as the fuzzer's timeout option[cite: 4].)*
+*(Note: In the example above, the `-t 50` is placed after the target program, meaning it is passed as an argument to `my_program`, not parsed as the fuzzer's timeout option.)*
