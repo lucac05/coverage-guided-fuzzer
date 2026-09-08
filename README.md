@@ -24,7 +24,7 @@ Ensure you have `clang` and `libclang-rt-18-dev` installed, as the fuzzer requir
 **Compilation**
 Compile the fuzzer executable utilizing the provided Makefile:
 ```bash
-make
+make all
 ```
 To compile with debugging symbols, use:
 ```bash
