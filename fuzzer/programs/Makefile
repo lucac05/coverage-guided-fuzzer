@@ -9,11 +9,6 @@
 
 PROGRAM-DIR := cascade hello-world
 
-# ------------------------------------------------------------ #
-# === DO NOT MODIFY BEYOND THIS POINT ===
-# Modifying the file beyond this point may break the build
-# system. 
-# === DO NOT MODIFY BEYOND THIS POINT ===
 
 MAKEFLAGS += --no-print-directory
 

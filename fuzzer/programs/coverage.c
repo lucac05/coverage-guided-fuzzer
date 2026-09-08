@@ -1,14 +1,3 @@
-/**
- * === DO NOT MODIFY THIS FILE ===
- * This file is essential in setting up the coverage sanitizer.
- * Modifying this file may break an essential component of
- * the fuzzer. 
- * 
- * During grading, we will replace this file with our own.
- * You have been warned.
- * === DO NOT MODIFY THIS FILE ===
- */
-
 #include <stddef.h>
 #include <string.h>
 #include <fcntl.h>

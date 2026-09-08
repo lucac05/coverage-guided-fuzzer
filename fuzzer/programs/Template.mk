@@ -1,12 +1,3 @@
-# === DO NOT MODIFY THIS FILE ===
-# This file is a template file which should be included in every
-# Makefile in the subdirectories of the programs directory.
-# 
-# Modifying this file may break the build system. During grading,
-# we will be replacing this file with our own copy. You have been
-# warned.
-# === DO NOT MODIFY THIS FILE ===
-
 # See $PROJECT_DIR/programs/README.md for details on how to
 # use this file.
 

@@ -1,10 +1,3 @@
-/*
- * === DO NOT MODIFY THIS FILE ===
- * During testing, we will replace this file with our
- * own. You have been warned.
- * === DO NOT MODIFY THIS FILE ===
- */
-
 #ifndef FZL_EVENTS_H
 #define FZL_EVENTS_H
 
